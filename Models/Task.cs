@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TaskHubAPI.Models
 {
@@ -9,5 +10,9 @@ namespace TaskHubAPI.Models
         public string? Content { get; set; }
         public DateTime Date { get; set; } = DateTime.Now;
         public string Status { get; set; }
+        
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }
