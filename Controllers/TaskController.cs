@@ -17,21 +17,51 @@ namespace TaskHubAPI.Controllers
         [HttpGet]
         [Route("tasks")]
         public async Task<IActionResult> GetAllTasks(
-            [FromServices] AppDbContext context
-        ){
+            [FromServices] AppDbContext context)
+        {
             var listTasks = await context
                 .Tasks
                 .ToListAsync();
             return Ok(listTasks);
         }
 
+        [HttpGet]
+        [Route("tasks/{id}")]
+        public async Task<IActionResult> DeleteTask(
+            [FromServices] AppDbContext context,
+            [FromRoute] int id)
+        {
+            var task = await context
+                .Tasks
+                .FirstOrDefaultAsync(x => x.Id == id);
+            
+            if(task == null){
+                return NotFound();
+            }
+
+            try{
+                context.Remove(task);
+                await context.SaveChangesAsync();
+                return Ok();
+            }catch{
+                return BadRequest();
+            }
+
+        }
+
         [HttpPost]
         [Route("tasks")]
         public async Task<IActionResult> PostTask(
             [FromServices] AppDbContext context,
-            [FromBody] CreateTaskViewModel model){
-
+            [FromBody] CreateTaskViewModel model)
+        {
+            var tasks = await context.Tasks.FirstOrDefaultAsync(x=> x.Title == model.Title);
+            
             if(!ModelState.IsValid){
+                return BadRequest();
+            }
+
+            if(tasks != null){
                 return BadRequest();
             }
 
@@ -51,8 +81,9 @@ namespace TaskHubAPI.Controllers
             }catch(Exception e){
                 return BadRequest(e);
             }
-            
         }
 
+
+       
     }
 }
