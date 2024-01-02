@@ -24,3 +24,13 @@ C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\refint\Task
 C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.pdb
 C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.genruntimeconfig.cache
 C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\ref\TaskHubAPI.dll
+C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\bin\Debug\net5.0\Humanizer.dll
+C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\bin\Debug\net5.0\Npgsql.dll
+C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.csproj.AssemblyReference.cache
+C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.sourcelink.json
+C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.csproj.CopyComplete
