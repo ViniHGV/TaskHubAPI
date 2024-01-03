@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TaskHubAPI.Context;
@@ -9,9 +10,10 @@ using TaskHubAPI.Context;
 namespace TaskHubAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240103203957_ListTasksInUser")]
+    partial class ListTasksInUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +23,7 @@ namespace TaskHubAPI.Migrations
 
             modelBuilder.Entity("TaskHubAPI.Models.Task", b =>
                 {
-                    b.Property<int>("TaskId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
@@ -38,10 +40,10 @@ namespace TaskHubAPI.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("integer");
 
-                    b.HasKey("TaskId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
@@ -50,7 +52,7 @@ namespace TaskHubAPI.Migrations
 
             modelBuilder.Entity("TaskHubAPI.Models.User", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
@@ -67,20 +69,16 @@ namespace TaskHubAPI.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("text");
 
-                    b.HasKey("UserId");
+                    b.HasKey("Id");
 
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("TaskHubAPI.Models.Task", b =>
                 {
-                    b.HasOne("TaskHubAPI.Models.User", "User")
+                    b.HasOne("TaskHubAPI.Models.User", null)
                         .WithMany("Tasks")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("TaskHubAPI.Models.User", b =>
