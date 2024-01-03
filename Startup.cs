@@ -1,3 +1,5 @@
+using System.Globalization;
+using System.Threading;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,8 +12,12 @@ namespace TaskHubAPI
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddDbContext<AppDbContext>();
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+                });
+                services.AddDbContext<AppDbContext>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
