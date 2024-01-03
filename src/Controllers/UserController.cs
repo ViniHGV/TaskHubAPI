@@ -15,14 +15,32 @@ namespace TaskHubAPI.Controllers
     [Route("v1")]
     public class UserController : ControllerBase
     {
+
         [HttpGet]
         [Route("users")]
         public async Task<IActionResult> GetAllUsers(
             [FromServices] AppDbContext context
         )
         {
-            var users = await context.Users.ToListAsync();
+            var users = await context
+                .Users
+                .ToListAsync();
             return Ok(users);
+        }
+        
+        [HttpGet]
+        [Route("users/{id}")]
+        public async Task<IActionResult> GetUserById(
+            [FromServices] AppDbContext context,
+            [FromRoute] int id
+        )
+        {
+            var user = await context
+                .Users
+                .Include(x => x.Tasks)
+                .FirstOrDefaultAsync(x => x.UserId == id);
+
+            return user != null ? Ok(user) : NotFound("Usuário não encontrado!");
         }
 
         [HttpPost]
@@ -31,16 +49,18 @@ namespace TaskHubAPI.Controllers
             [FromServices] AppDbContext context,
             [FromBody] CreateUserView model)
         {
+            
+            
            var searchUser = await context
                .Users
-               .FirstOrDefaultAsync(x => x.Name == model.Name || x.Email == model.Email);
+               .FirstOrDefaultAsync(x => x.Email == model.Email);
 
            if(!ModelState.IsValid){
-                return NotFound();
+                return NotFound("As informações enviadas são invalidas!");
            }
 
            if(searchUser != null){
-                return NotFound();
+                return NotFound("Uma conta já foi criada com esse E-mail!");
            }
 
            var userSave = new User{
@@ -56,10 +76,8 @@ namespace TaskHubAPI.Controllers
                 return Ok(userSave);
 
            }catch (Exception e){
-                return BadRequest();
+                return BadRequest(e);
            }
-
-
         }
         
     }
