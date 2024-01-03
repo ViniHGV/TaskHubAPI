@@ -893,19 +893,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LATITUDE E7250\\.nuget\\packages\\": {}
+    "C:\\Users\\ixxvi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LATITUDE E7250\\Documents\\APINET\\TaskHubAPI\\TaskHubAPI.csproj",
+      "projectUniqueName": "C:\\Users\\ixxvi\\Documents\\.NETProjects\\TaskHubAPI\\TaskHubAPI.csproj",
       "projectName": "TaskHubAPI",
-      "projectPath": "C:\\Users\\LATITUDE E7250\\Documents\\APINET\\TaskHubAPI\\TaskHubAPI.csproj",
-      "packagesPath": "C:\\Users\\LATITUDE E7250\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LATITUDE E7250\\Documents\\APINET\\TaskHubAPI\\obj\\",
+      "projectPath": "C:\\Users\\ixxvi\\Documents\\.NETProjects\\TaskHubAPI\\TaskHubAPI.csproj",
+      "packagesPath": "C:\\Users\\ixxvi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ixxvi\\Documents\\.NETProjects\\TaskHubAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\LATITUDE E7250\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\ixxvi\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"

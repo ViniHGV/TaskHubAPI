@@ -12,8 +12,8 @@ Bem-vindo ao repositório da TaskHub API! Esta é uma solução avançada para o
 
 1. **Clone o Repositório:**
    ```bash
-   git clone https://github.com/seu-usuario/taskhub-api.git
-   cd taskhub-api
+   git clone https://github.com/ViniHGV/TaskHubAPI
+   cd TaskHubAPI
 
 ## Destaques
 
