@@ -10,6 +10,6 @@ namespace TaskHubAPI.Context
         
         protected override void OnConfiguring(
             DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseNpgsql("Host=localhost; Database=mydb; Username=postgres; Password=Vv1n1C1u$2309");
+            => optionsBuilder.UseNpgsql("Host=localhost; Database=mydb; Username=postgres; Password=123");
     }
 }
