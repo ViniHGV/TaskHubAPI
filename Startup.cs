@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TaskHubAPI.Context;
+using TaskHubAPI.Services.User;
+using TaskHubAPI.src.Services.Tasks;
 
 namespace TaskHubAPI
 {
@@ -16,6 +18,8 @@ namespace TaskHubAPI
                     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
                 });
                 services.AddDbContext<AppDbContext>();
+            services.AddScoped<TaskService>();
+            services.AddScoped<UserService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
