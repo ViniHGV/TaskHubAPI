@@ -5,15 +5,18 @@ using UserModel = TaskHubAPI.Models.User;
 using TaskHubAPI.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
+using TaskHubAPI.Security;
 
 namespace TaskHubAPI.Services.User
 {
     public class UserService : IUserService
     {
-        public AppDbContext _userContext { get; set; }
+
+        private AppDbContext _userContext { get; set; }
         public UserService(AppDbContext _userContext)
         {
             this._userContext = _userContext;
+
         }
         public IEnumerable<UserModel> GetAllUsers()
         {
@@ -49,16 +52,16 @@ namespace TaskHubAPI.Services.User
             return user;
         }
 
-        public UserModel PostUsers(CreateUserView model)
+        public UserModel PostUsers(CreateUserView userDTO)
         {
-            var userSearch = GetUserByEmail(model.Email); 
+            var userSearch = GetUserByEmail(userDTO.Email); 
 
             if(userSearch == null){
                 
                 var userPost = new UserModel{
-                    Email = model.Email,
-                    Name = model.Name,
-                    Password = model.Password,
+                    Email = userDTO.Email,
+                    Name = userDTO.Name,
+                    Password = EncryptedPassword.GeneratedEncryptedPassword(userDTO.Password),
                 };
 
                 try{
@@ -71,16 +74,16 @@ namespace TaskHubAPI.Services.User
             return userSearch;
         }
 
-        public UserModel UpdateUser(int id, CreateUserView model)
+        public UserModel UpdateUser(int id, CreateUserView userDTO)
         {
             var user = GetUserById(id);
 
             if(user == null)
                 return null;
 
-            user.Email = model.Email;
-            user.Name = model.Name;
-            user.Password = model.Password;
+            user.Email = userDTO.Email;
+            user.Name = userDTO.Name;
+            user.Password = userDTO.Password;
 
             try{
 
@@ -93,5 +96,16 @@ namespace TaskHubAPI.Services.User
             return user;
         }
 
+        public bool LoginUser(LoginViewModel loginDTO)
+        {
+            var encryptedPasswordDTO = EncryptedPassword.GeneratedEncryptedPassword(loginDTO.Password);
+
+            var searchAccont = _userContext.Users.FirstOrDefault(x => x.Email == loginDTO.Email && x.Password == encryptedPasswordDTO);
+
+            if(searchAccont == null)
+                return false;
+            
+            return true;
+        }
     }
 }
