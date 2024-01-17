@@ -10,6 +10,7 @@ Bem-vindo ao repositório da TaskHub API! Esta é uma solução avançada para o
 
 - ## Recursos que pretendo adicionar
 
+- 📚 **Busca de Tasks por Status:** Retornar Tasks pelo status solicitado.
 - 📚 **Gestão de Projetos para Tarefas:** Criação, edição e remoção de um projeto, nele conterá as tarefas do projeto e os usuários responsáveis pelo projeto.
 - 👪 **Gestão de Usuários por projeto:** Adicionar, remover e editar acesso de usuários a projetos e definir qual o nível do usuário no projeto.
 - 🔐 **Login de usuários com JWT:** Fornecer o token de acesso do usuário e se for válido permitir que continua.
