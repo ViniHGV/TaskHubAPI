@@ -10,7 +10,7 @@ namespace TaskHubAPI.src.Services.Tasks
 {
     public class TaskService : ITaskService
     {
-        public AppDbContext _taskContext { get; set; }
+        private AppDbContext _taskContext { get; set; }
         public TaskService(AppDbContext _taskContext)
         {
             this._taskContext = _taskContext;
@@ -50,10 +50,10 @@ namespace TaskHubAPI.src.Services.Tasks
             return Task;
         }
 
-        public Task PostTask(CreateTaskViewModel model)
+        public Task PostTask(CreateTaskViewModel taskDTO)
         {
             var taskModel = _taskContext.Tasks
-                .FirstOrDefault(x => x.Title == model.Title && x.UserId == model.UserId);
+                .FirstOrDefault(x => x.Title == taskDTO.Title && x.UserId == taskDTO.UserId);
 
             if(taskModel != null ){
                 return null;
@@ -61,10 +61,10 @@ namespace TaskHubAPI.src.Services.Tasks
 
             var task = new Task
             {
-                Title = model.Title,
-                Content = model.Content,
-                Status = model.Status,
-                UserId = model.UserId,
+                Title = taskDTO.Title,
+                Content = taskDTO.Content,
+                Status = taskDTO.Status,
+                UserId = taskDTO.UserId,
             };
 
             try{
