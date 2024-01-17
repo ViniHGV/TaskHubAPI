@@ -17,12 +17,18 @@ namespace TaskHubAPI.Services.User
         }
         public IEnumerable<UserModel> GetAllUsers()
         {
-            return _userContext.Users.ToList();
+            return _userContext.Users
+                .AsNoTracking()
+                .Include(x => x.Tasks)
+                .ToList();
         }
 
         public UserModel GetUserByEmail(string email)
         {
-            var user = _userContext.Users.FirstOrDefault(x => x.Email == email);
+            var user = _userContext.Users
+                .AsNoTracking()
+                .Include(x => x.Tasks)
+                .FirstOrDefault(x => x.Email == email);
 
              if(user == null)
                 return null;
@@ -33,6 +39,7 @@ namespace TaskHubAPI.Services.User
         public UserModel GetUserById(int id)
         {
             var user = _userContext.Users
+                .AsNoTracking()
                 .Include(x => x.Tasks)
                 .FirstOrDefault(x => x.UserId == id);
 
