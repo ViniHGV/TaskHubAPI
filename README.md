@@ -17,6 +17,6 @@ Bem-vindo ao repositório da TaskHub API! Esta é uma solução avançada para o
 
 ## Destaques
 
- - 🚀 **Desempenho Excepcional:** Aproveite o máximo desempenho com operações assíncronas e eficiência em cada interação.
+ - 🚀 **Desempenho Excepcional:** Aproveite o máximo desempenho com operações de alta eficiência em cada interação.
  - 🎨 **API Intuitiva:** Uma interface fácil de usar, tornando a integração rápida e agradável.
 
