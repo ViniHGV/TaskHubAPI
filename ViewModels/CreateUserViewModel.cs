@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
 
 namespace TaskHubAPI.ViewModels
 {
@@ -13,6 +12,7 @@ namespace TaskHubAPI.ViewModels
         public string Email { get; set; }
 
         [Required(ErrorMessage = "O campo Senha é obrigatório")]
+        [MinLength(8, ErrorMessage = "A senha deve conter no minímo 8 caracteres")]
         public string Password { get; set; }
     }
 }
