@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using TaskHubAPI.Context;
 using TaskHubAPI.Models;
 using TaskHubAPI.Services.Tasks;
@@ -16,12 +17,18 @@ namespace TaskHubAPI.src.Services.Tasks
         }
         public IEnumerable<Task> GetAllTasks()
         {
-            return _taskContext.Tasks.ToList();
+            return _taskContext.Tasks
+                .AsNoTracking()
+                .Include(x => x.User)
+                .ToList();
         }
 
         public Task TaskForId(int id)
         {
-            var Task = _taskContext.Tasks.FirstOrDefault(x => x.TaskId == id);
+            var Task = _taskContext.Tasks
+                .AsNoTracking()
+                .Include(x => x.User)
+                .FirstOrDefault(x => x.TaskId == id);
             
             if (Task == null){
                 return null;
@@ -45,7 +52,8 @@ namespace TaskHubAPI.src.Services.Tasks
 
         public Task PostTask(CreateTaskViewModel model)
         {
-            var taskModel = _taskContext.Tasks.FirstOrDefault(x => x.Title == model.Title && x.UserId == model.UserId);
+            var taskModel = _taskContext.Tasks
+                .FirstOrDefault(x => x.Title == model.Title && x.UserId == model.UserId);
 
             if(taskModel != null ){
                 return null;
@@ -90,7 +98,10 @@ namespace TaskHubAPI.src.Services.Tasks
 
         public Task TaskForTitle(CreateTaskViewModel model)
         {
-            var task = _taskContext.Tasks.FirstOrDefault(x => x.Title == model.Title);
+            var task = _taskContext.Tasks
+                .AsNoTracking()
+                .Include(x => x.User)
+                .FirstOrDefault(x => x.Title == model.Title);
 
             if(task == null){
                 return null;
