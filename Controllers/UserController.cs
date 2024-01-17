@@ -66,6 +66,17 @@ namespace TaskHubAPI.Controllers
 
             return Ok("Usuário editado com sucesso!");
         }
+
+        [Route("users/login")]
+        [HttpPost]
+        public IActionResult LoginUser ([FromBody] LoginViewModel loginDTO){
+            var login = _userService.LoginUser(loginDTO);
+
+            if(login == false)
+                return NotFound("Acesso negado! Confirme o E-mail e a Senha");
+
+            return Ok("Usuário logado com sucesso!");
+        }
         
     }
 
