@@ -8,9 +8,9 @@ namespace TaskHubAPI.Services.Tasks
     {
         IEnumerable<Task> GetAllTasks();
         Task TaskForId(int id);
-        Task TaskForTitle(CreateTaskViewModel model);
+        Task TaskForTitle(CreateTaskViewModel taskDTO);
         Task DeleteTask(int id);
-        Task PostTask(CreateTaskViewModel model);
-        Task UpdateTask(int id, CreateTaskViewModel model);
+        Task PostTask(CreateTaskViewModel taskDTO);
+        Task UpdateTask(int id, CreateTaskViewModel taskDTO);
     }
 }
