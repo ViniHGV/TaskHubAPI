@@ -1,12 +1,8 @@
 using System;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.EntityFrameworkCore;
-using TaskHubAPI.Context;
 using TaskHubAPI.src.Services.Tasks;
 using TaskHubAPI.ViewModels;
-using Task = TaskHubAPI.Models.Task;
 
 namespace TaskHubAPI.Controllers
 {
@@ -29,10 +25,10 @@ namespace TaskHubAPI.Controllers
 
         [HttpGet]
         [Route("tasks/{id}")]
-        public IActionResult TaskForId(
+        public IActionResult TaskById(
             [FromRoute] int id)
         {
-            var task = _taskService.TaskForId(id);
+            var task = _taskService.TaskById(id);
             
             return task != null ? Ok(task) : NotFound("Tarefa não encontrada!");
         }
@@ -76,9 +72,9 @@ namespace TaskHubAPI.Controllers
             [FromRoute] int id,
             [FromBody] CreateTaskViewModel model)
         {
-            var task = _taskService.TaskForId(id);
+            var task = _taskService.TaskById(id);
             
-            var taskSearch = _taskService.TaskForTitle(model);
+            var taskSearch = _taskService.TaskByTitle(model);
 
             if(task == null )
                 return NotFound("Tarefa não encontrada!");
@@ -94,6 +90,19 @@ namespace TaskHubAPI.Controllers
             }catch(Exception e){
                 return BadRequest(e);
             }
+        }
+
+        [HttpGet]
+        [Route("tasks/status/{statusTask}")]
+        public IActionResult GetTaskByStatus (
+            [FromRoute] string statusTask) 
+        {
+            var tasksByStatus = _taskService.TasksByStatus(statusTask);
+
+            if(tasksByStatus == null)
+                return NotFound("Não existem tarefas com esse status");
+
+            return Ok(tasksByStatus);
         }
     }
 }
