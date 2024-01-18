@@ -23,7 +23,7 @@ namespace TaskHubAPI.src.Services.Tasks
                 .ToList();
         }
 
-        public Task TaskForId(int id)
+        public Task TaskById(int id)
         {
             var Task = _taskContext.Tasks
                 .AsNoTracking()
@@ -39,7 +39,7 @@ namespace TaskHubAPI.src.Services.Tasks
 
         public Task DeleteTask(int id)
         {
-            var Task = TaskForId(id);
+            var Task = TaskById(id);
 
             if(Task == null){
                 return null;
@@ -81,7 +81,7 @@ namespace TaskHubAPI.src.Services.Tasks
 
         public Task UpdateTask(int id, CreateTaskViewModel model)
         {
-            var taskSearch = TaskForId(id);
+            var taskSearch = TaskById(id);
 
             if(taskSearch == null){
                 return null;
@@ -96,7 +96,7 @@ namespace TaskHubAPI.src.Services.Tasks
             return taskSearch;
         }
 
-        public Task TaskForTitle(CreateTaskViewModel model)
+        public Task TaskByTitle(CreateTaskViewModel model)
         {
             var task = _taskContext.Tasks
                 .AsNoTracking()
@@ -108,6 +108,16 @@ namespace TaskHubAPI.src.Services.Tasks
             }
 
             return task;
+        }
+
+        public IEnumerable<Task> TasksByStatus(string statusTask)
+        {
+            var tasksForStatus = _taskContext.Tasks.Where(x => x.Status == statusTask).ToList();
+
+            if(tasksForStatus == null)
+                return null;
+
+            return tasksForStatus;    
         }
     }
 }
