@@ -7,8 +7,9 @@ namespace TaskHubAPI.Services.Tasks
     public interface ITaskService
     {
         IEnumerable<Task> GetAllTasks();
-        Task TaskForId(int id);
-        Task TaskForTitle(CreateTaskViewModel taskDTO);
+        Task TaskById(int id);
+        IEnumerable<Task> TasksByStatus(string statusTask);
+        Task TaskByTitle(CreateTaskViewModel taskDTO);
         Task DeleteTask(int id);
         Task PostTask(CreateTaskViewModel taskDTO);
         Task UpdateTask(int id, CreateTaskViewModel taskDTO);
