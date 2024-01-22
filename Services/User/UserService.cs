@@ -6,6 +6,7 @@ using TaskHubAPI.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using TaskHubAPI.Security;
+using TaskHubAPI.Services.Token;
 
 namespace TaskHubAPI.Services.User
 {
@@ -13,10 +14,12 @@ namespace TaskHubAPI.Services.User
     {
 
         private AppDbContext _userContext { get; set; }
-        public UserService(AppDbContext _userContext)
+        private TokenService _tokenService { get; set; }
+
+        public UserService(AppDbContext _userContext, TokenService _tokenService)
         {
             this._userContext = _userContext;
-
+            this._tokenService = _tokenService;
         }
         public IEnumerable<UserModel> GetAllUsers()
         {
@@ -54,7 +57,7 @@ namespace TaskHubAPI.Services.User
 
         public UserModel PostUsers(CreateUserView userDTO)
         {
-            var userSearch = GetUserByEmail(userDTO.Email); 
+            var userSearch = GetUser(userDTO); 
 
             if(userSearch == null){
                 
@@ -96,16 +99,28 @@ namespace TaskHubAPI.Services.User
             return user;
         }
 
-        public bool LoginUser(LoginViewModel loginDTO)
+        public string LoginUser(LoginViewModel loginDTO)
         {
             var encryptedPasswordDTO = EncryptedPassword.GeneratedEncryptedPassword(loginDTO.Password);
 
             var searchAccont = _userContext.Users.FirstOrDefault(x => x.Email == loginDTO.Email && x.Password == encryptedPasswordDTO);
 
             if(searchAccont == null)
-                return false;
+                return null;
             
-            return true;
+            var token = _tokenService.GenerateToken(searchAccont);
+
+            return token;
+        }
+
+        public UserModel GetUser(CreateUserView userDTO)
+        {
+            var getUser = _userContext.Users.FirstOrDefault(x => x.Email == userDTO.Email && x.Name == userDTO.Name);
+
+            if(getUser == null)
+                return null;
+
+            return getUser;
         }
     }
 }
