@@ -13,5 +13,6 @@ namespace TaskHubAPI.Services.Tasks
         Task DeleteTask(int id);
         Task PostTask(CreateTaskViewModel taskDTO);
         Task UpdateTask(int id, CreateTaskViewModel taskDTO);
+        IEnumerable<Task> GetAllTasksByUser(string nameUser);
     }
 }

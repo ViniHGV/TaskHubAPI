@@ -119,5 +119,18 @@ namespace TaskHubAPI.src.Services.Tasks
 
             return tasksForStatus;    
         }
+
+        public IEnumerable<Task> GetAllTasksByUser(string nameUser)
+        {
+            var TasksByUser = _taskContext.Tasks
+                .Include(x => x.User)
+                .Where(x => x.User.Name == nameUser)
+                .ToList();
+            
+            if(TasksByUser == null)
+                return null;
+                
+            return TasksByUser;;
+        }
     }
 }
