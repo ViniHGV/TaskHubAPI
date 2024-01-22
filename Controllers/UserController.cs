@@ -72,10 +72,10 @@ namespace TaskHubAPI.Controllers
         public IActionResult LoginUser ([FromBody] LoginViewModel loginDTO){
             var login = _userService.LoginUser(loginDTO);
 
-            if(login == false)
-                return NotFound("Acesso negado! Confirme o E-mail e a Senha");
+            if(login == null)
+                return Unauthorized("Usuário não Autorizado!");
 
-            return Ok("Usuário logado com sucesso!");
+            return Ok(login);
         }
         
     }
