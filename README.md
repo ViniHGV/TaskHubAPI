@@ -10,6 +10,7 @@ Bem-vindo ao repositório da TaskHub API! Esta é uma solução avançada para o
 - 🔒 **Geração de Criptografia para a senha do usuário:** geração de criptografia de senha quando o usuário cadastrar sua conta no sistema e para verificação de senha para login.
 - 🔐 **Login de usuários:** Acesso limitado para usuários não cadastrados no sistema, verificação de senha utilizando **Criptografia**.
 - 📕 **Busca de Tasks por Status:** Retornar Tasks pelo status solicitado.
+- 📃 **Implementação Swagger** Implementando Swagger para documentação e testes da API.
 
 - ## Recursos que pretendo adicionar
 
