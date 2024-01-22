@@ -1,9 +1,14 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using TaskHubAPI.Configuration;
 using TaskHubAPI.Context;
+using TaskHubAPI.Services.Token;
 using TaskHubAPI.Services.User;
 using TaskHubAPI.src.Services.Tasks;
 
@@ -13,6 +18,12 @@ namespace TaskHubAPI
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(optionsAuthentication =>
+            {	
+                optionsAuthentication.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                optionsAuthentication.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            });
+
             services.AddSwaggerGen(options => {
                 options.SwaggerDoc("v1", new OpenApiInfo{Title = "TaskHubAPI", Version = "v1"});
             });
@@ -25,6 +36,26 @@ namespace TaskHubAPI
             services.AddDbContext<AppDbContext>();
             services.AddScoped<TaskService>();
             services.AddScoped<UserService>();
+            services.AddScoped<TokenService>();
+
+            var key = Encoding.ASCII.GetBytes(Settings.Secret);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -36,6 +67,9 @@ namespace TaskHubAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "TaskHubAPI v1"));
             }
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseRouting();
 
