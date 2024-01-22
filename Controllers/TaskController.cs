@@ -104,5 +104,17 @@ namespace TaskHubAPI.Controllers
 
             return Ok(tasksByStatus);
         }
+
+        [HttpGet]
+        [Route("task/user")]
+        public IActionResult GetAllTasksByUser(){
+
+            var tasksByUser = _taskService.GetAllTasksByUser(User.Identity.Name);
+            
+            if(tasksByUser == null)
+                return NotFound("Usuário não tem nenhuma tarefa!");
+
+            return Ok(tasksByUser);
+        }
     }
 }
