@@ -1,4 +1,5 @@
 using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using TaskHubAPI.src.Services.Tasks;
@@ -107,6 +108,7 @@ namespace TaskHubAPI.Controllers
 
         [HttpGet]
         [Route("task/user")]
+        [Authorize]
         public IActionResult GetAllTasksByUser(){
 
             var tasksByUser = _taskService.GetAllTasksByUser(User.Identity.Name);
