@@ -11,13 +11,13 @@ Bem-vindo ao repositório da TaskHub API! Esta é uma solução avançada para o
 - 🔐 **Login de usuários:** Acesso limitado para usuários não cadastrados no sistema, verificação de senha utilizando **Criptografia**.
 - 📕 **Busca de Tasks por Status:** Retornar Tasks pelo status solicitado.
 - 📃 **Implementação Swagger** Implementando Swagger para documentação e testes da API.
+- 🔐 **Login de usuários com JWT:** Fornecer o token de acesso do usuário e se for válido permitir que continua.
+- 📚👮‍♂️ **Busca por tarefas do usuário que está logado** Um serviço desenvolvido para recuperar as tarefas associadas a um usuário específico após a conclusão bem-sucedida do processo de autenticação. FUncionando em conjunto com o ASP.NET Core Identity, um sistema de autenticação e autorização, para persistir dados de identidade.
 
 - ## Recursos que pretendo adicionar
 
 - 📚 **Gestão de Projetos para Tarefas:** Criação, edição e remoção de um projeto, nele conterá as tarefas do projeto e os usuários responsáveis pelo projeto.
 - 👪 **Gestão de Usuários por projeto:** Adicionar, remover e editar acesso de usuários a projetos e definir qual o nível do usuário no projeto.
-- 🔐 **Login de usuários com JWT:** Fornecer o token de acesso do usuário e se for válido permitir que continua.
-
 
 ## Como Começar
 
