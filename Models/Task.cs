@@ -16,5 +16,9 @@ namespace TaskHubAPI.Models
         [ForeignKey("User")]
         public int UserId { get; set; }
         public User User { get; set; }
+
+        [ForeignKey("Project")]
+        public int IdProject { get; set; }
+        public Project Project { get; set; }
     }
 }
