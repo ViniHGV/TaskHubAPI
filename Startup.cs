@@ -2,12 +2,14 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using TaskHubAPI.Configuration;
 using TaskHubAPI.Context;
+using TaskHubAPI.Services.Project;
 using TaskHubAPI.Services.Token;
 using TaskHubAPI.Services.User;
 using TaskHubAPI.src.Services.Tasks;
@@ -18,16 +20,11 @@ namespace TaskHubAPI
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(optionsAuthentication =>
-            {	
-                optionsAuthentication.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                optionsAuthentication.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            });
-
             services.AddSwaggerGen(options => {
                 options.SwaggerDoc("v1", new OpenApiInfo{Title = "TaskHubAPI", Version = "v1"});
             });
 
+            services.AddCors();
             services.AddControllers()
                 .AddJsonOptions(options =>
                 {
@@ -37,6 +34,7 @@ namespace TaskHubAPI
             services.AddScoped<TaskService>();
             services.AddScoped<UserService>();
             services.AddScoped<TokenService>();
+            services.AddScoped<ProjectService>();
 
             var key = Encoding.ASCII.GetBytes(Settings.Secret);
             services.AddAuthentication(x =>
@@ -68,10 +66,15 @@ namespace TaskHubAPI
                 app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "TaskHubAPI v1"));
             }
 
+            app.UseRouting();
+
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
             app.UseAuthentication();
             app.UseAuthorization();
-
-            app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
