@@ -6,6 +6,7 @@ namespace TaskHubAPI.Models
 {
     public class User
     {
+
         [Key]
         public int UserId { get; set; }
         public string Name { get; set; }
@@ -13,5 +14,6 @@ namespace TaskHubAPI.Models
         public string Password { get; set; }
         public DateTime DateCreateAccount { get; set; } = DateTime.Now;
         public List<Task> Tasks { get; set; }
+        public List<Project> Projects { get; set; }
     }
 }
