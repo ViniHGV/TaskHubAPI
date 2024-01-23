@@ -20,6 +20,7 @@ namespace TaskHubAPI.src.Services.Tasks
             return _taskContext.Tasks
                 .AsNoTracking()
                 .Include(x => x.User)
+                .Include(x => x.Project)
                 .ToList();
         }
 
@@ -65,6 +66,7 @@ namespace TaskHubAPI.src.Services.Tasks
                 Content = taskDTO.Content,
                 Status = taskDTO.Status,
                 UserId = taskDTO.UserId,
+                IdProject = taskDTO.IdProject
             };
 
             try{
