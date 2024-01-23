@@ -15,7 +15,12 @@ namespace TaskHubAPI.ViewModels
         [Required(ErrorMessage = "O Campo Status é obrigatório")]
         public string Status { get; set; }
         
+        [Required(ErrorMessage = "O Id do Usuário é obrigatório para o relacionamento")]
         [ForeignKey("User")]
         public int UserId { get; set; }
+
+        [Required(ErrorMessage = "O Id do Projeto é obrigatório para o relacionamento")]
+        [ForeignKey("Project")]
+        public int IdProject { get; set; }
     }
 }
