@@ -19,6 +19,7 @@ namespace TaskHubAPI.Controllers
 
         [HttpGet]
         [Route("tasks")]
+        [Authorize]
         public IActionResult GetAllTasks()
         {
             return Ok(_taskService.GetAllTasks());
@@ -50,6 +51,7 @@ namespace TaskHubAPI.Controllers
 
         [HttpPost]
         [Route("tasks")]
+        [Authorize]
         public IActionResult PostTask(
             [FromBody] CreateTaskViewModel model)
         {
