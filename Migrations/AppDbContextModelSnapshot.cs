@@ -19,6 +19,27 @@ namespace TaskHubAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("TaskHubAPI.Models.Project", b =>
+                {
+                    b.Property<int>("IdProject")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
+
+                    b.Property<DateTime>("DateOfCriation")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("IdUser")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("text");
+
+                    b.HasKey("IdProject");
+
+                    b.ToTable("Projects");
+                });
+
             modelBuilder.Entity("TaskHubAPI.Models.Task", b =>
                 {
                     b.Property<int>("TaskId")
@@ -32,6 +53,9 @@ namespace TaskHubAPI.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<int>("IdProject")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Status")
                         .HasColumnType("text");
 
@@ -42,6 +66,8 @@ namespace TaskHubAPI.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("TaskId");
+
+                    b.HasIndex("IdProject");
 
                     b.HasIndex("UserId");
 
@@ -61,26 +87,58 @@ namespace TaskHubAPI.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
+                    b.Property<int>("IdProject")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
                     b.Property<string>("Password")
                         .HasColumnType("text");
 
+                    b.Property<int?>("ProjectsIdProject")
+                        .HasColumnType("integer");
+
                     b.HasKey("UserId");
+
+                    b.HasIndex("ProjectsIdProject");
 
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("TaskHubAPI.Models.Task", b =>
                 {
+                    b.HasOne("TaskHubAPI.Models.Project", "Project")
+                        .WithMany("Tasks")
+                        .HasForeignKey("IdProject")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("TaskHubAPI.Models.User", "User")
                         .WithMany("Tasks")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Project");
+
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TaskHubAPI.Models.User", b =>
+                {
+                    b.HasOne("TaskHubAPI.Models.Project", "Projects")
+                        .WithMany("Users")
+                        .HasForeignKey("ProjectsIdProject");
+
+                    b.Navigation("Projects");
+                });
+
+            modelBuilder.Entity("TaskHubAPI.Models.Project", b =>
+                {
+                    b.Navigation("Tasks");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("TaskHubAPI.Models.User", b =>

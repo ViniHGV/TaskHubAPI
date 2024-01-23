@@ -34,14 +34,6 @@ C:\Users\ixxvi\Documents\.NETProjects\TaskHubAPI\obj\Debug\net5.0\refint\TaskHub
 C:\Users\ixxvi\Documents\.NETProjects\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.pdb
 C:\Users\ixxvi\Documents\.NETProjects\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.genruntimeconfig.cache
 C:\Users\ixxvi\Documents\.NETProjects\TaskHubAPI\obj\Debug\net5.0\ref\TaskHubAPI.dll
-C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.csproj.AssemblyReference.cache
-C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.AssemblyInfoInputs.cache
-C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.AssemblyInfo.cs
-C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.csproj.CoreCompileInputs.cache
-C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.sourcelink.json
 C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\bin\Debug\net5.0\appsettings.json
 C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\bin\Debug\net5.0\TaskHubAPI.exe
@@ -68,6 +60,14 @@ C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\bin\Debug\net5.0\Swashbuckle
 C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.csproj.AssemblyReference.cache
+C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.AssemblyInfoInputs.cache
+C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.AssemblyInfo.cs
+C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.csproj.CoreCompileInputs.cache
+C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.sourcelink.json
 C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\TaskHubAPI.RazorTargetAssemblyInfo.cache
 C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\scopedcss\bundle\TaskHubAPI.styles.css
 C:\Users\LATITUDE E7250\Documents\APINET\TaskHubAPI\obj\Debug\net5.0\staticwebassets\TaskHubAPI.StaticWebAssets.Manifest.cache
