@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using TaskHubAPI.Security;
 using TaskHubAPI.Services.Token;
+using System.Threading.Tasks;
 
 namespace TaskHubAPI.Services.User
 {
@@ -26,6 +27,7 @@ namespace TaskHubAPI.Services.User
             return _userContext.Users
                 .AsNoTracking()
                 .Include(x => x.Tasks)
+                // .Include(x => x.Projects)
                 .ToList();
         }
 
@@ -34,6 +36,7 @@ namespace TaskHubAPI.Services.User
             var user = _userContext.Users
                 .AsNoTracking()
                 .Include(x => x.Tasks)
+                .Include(x => x.Projects)
                 .FirstOrDefault(x => x.Email == email);
 
              if(user == null)
@@ -42,12 +45,13 @@ namespace TaskHubAPI.Services.User
             return user;
         }
 
-        public UserModel GetUserById(int id)
+        public async Task<UserModel> GetUserById(int id)
         {
-            var user = _userContext.Users
+            var user = await _userContext.Users
                 .AsNoTracking()
                 .Include(x => x.Tasks)
-                .FirstOrDefault(x => x.UserId == id);
+                .Include(x => x.Projects)
+                .FirstOrDefaultAsync(x => x.UserId == id);
 
             if(user == null)
                 return null;
@@ -77,9 +81,9 @@ namespace TaskHubAPI.Services.User
             return userSearch;
         }
 
-        public UserModel UpdateUser(int id, CreateUserView userDTO)
+        public async Task<UserModel> UpdateUser(int id, CreateUserView userDTO)
         {
-            var user = GetUserById(id);
+            var user = await GetUserById(id);
 
             if(user == null)
                 return null;
@@ -91,7 +95,7 @@ namespace TaskHubAPI.Services.User
             try{
 
             _userContext.Users.Update(user);
-            _userContext.SaveChanges();
+           await _userContext.SaveChangesAsync();
 
             }catch(Exception e){
                 throw new ArgumentException(e.Message);
@@ -103,7 +107,8 @@ namespace TaskHubAPI.Services.User
         {
             var encryptedPasswordDTO = EncryptedPassword.GeneratedEncryptedPassword(loginDTO.Password);
 
-            var searchAccont = _userContext.Users.FirstOrDefault(x => x.Email == loginDTO.Email && x.Password == encryptedPasswordDTO);
+            var searchAccont = _userContext.Users
+                .FirstOrDefault(x => x.Email == loginDTO.Email && x.Password == encryptedPasswordDTO);
 
             if(searchAccont == null)
                 return null;
