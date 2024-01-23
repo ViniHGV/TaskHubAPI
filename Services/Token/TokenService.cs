@@ -11,14 +11,15 @@ namespace TaskHubAPI.Services.Token
     {
         public string GenerateToken(Models.User user)
         {
-          var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(Settings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Email, user.Email.ToString()),
-                    new Claim(ClaimTypes.Name, user.Name.ToString()),
+                    new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(ClaimTypes.Name, user.Name),
+                    new Claim(ClaimTypes.Sid, user.UserId.ToString()),
                 }),
                 Expires = DateTime.UtcNow.AddHours(8),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
