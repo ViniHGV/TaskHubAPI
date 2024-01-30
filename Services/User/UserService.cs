@@ -27,7 +27,6 @@ namespace TaskHubAPI.Services.User
             return _userContext.Users
                 .AsNoTracking()
                 .Include(x => x.Tasks)
-                // .Include(x => x.Projects)
                 .ToList();
         }
 
@@ -36,7 +35,6 @@ namespace TaskHubAPI.Services.User
             var user = _userContext.Users
                 .AsNoTracking()
                 .Include(x => x.Tasks)
-                .Include(x => x.Projects)
                 .FirstOrDefault(x => x.Email == email);
 
              if(user == null)
@@ -50,7 +48,6 @@ namespace TaskHubAPI.Services.User
             var user = await _userContext.Users
                 .AsNoTracking()
                 .Include(x => x.Tasks)
-                .Include(x => x.Projects)
                 .FirstOrDefaultAsync(x => x.UserId == id);
 
             if(user == null)

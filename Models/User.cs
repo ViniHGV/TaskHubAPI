@@ -14,6 +14,5 @@ namespace TaskHubAPI.Models
         public string Password { get; set; }
         public DateTime DateCreateAccount { get; set; } = DateTime.Now;
         public List<Task> Tasks { get; set; }
-        public List<Project> Projects { get; set; }
     }
 }

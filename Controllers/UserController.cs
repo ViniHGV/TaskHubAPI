@@ -1,4 +1,5 @@
 using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using TaskHubAPI.Services.User;
@@ -25,6 +26,7 @@ namespace TaskHubAPI.Controllers
         
         [HttpGet]
         [Route("users/{id}")]
+        [Authorize]
         public IActionResult GetUserById(
             [FromRoute] int id
         )
