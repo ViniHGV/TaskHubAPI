@@ -2,14 +2,12 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using TaskHubAPI.Configuration;
 using TaskHubAPI.Context;
-using TaskHubAPI.Services.Project;
 using TaskHubAPI.Services.Token;
 using TaskHubAPI.Services.User;
 using TaskHubAPI.src.Services.Tasks;
@@ -34,7 +32,6 @@ namespace TaskHubAPI
             services.AddScoped<TaskService>();
             services.AddScoped<UserService>();
             services.AddScoped<TokenService>();
-            services.AddScoped<ProjectService>();
 
             var key = Encoding.ASCII.GetBytes(Settings.Secret);
             services.AddAuthentication(x =>
